@@ -1,57 +1,62 @@
-import java.util.Calendar;
-
+import java.util.Date;
 
 public class Account {
 	private int id = 0;
 	private double balance = 0;
 	private double annualInterestRate = 0;
-	private Calendar dateCreated;
-	
-	public Account(int a, double b, double c, Calendar d){
+	private Date dateCreated;
+
+	public Account(int a, double b, double c) {
 		id = a;
 		balance = b;
 		annualInterestRate = c;
-		dateCreated = d;
+		dateCreated = new java.util.Date();
 	}
-	
-	public int getID(){
+
+	public int getID() {
 		return id;
 	}
-	
-	public void setID(int value){
+
+	public void setID(int value) {
 		id = value;
 	}
-	
-	public double getBalance(){
+
+	public double getBalance() {
 		return balance;
 	}
-	
-	public void setBalance(double value){
+
+	public void setBalance(double value) {
 		balance = value;
 	}
-	
-	public double getRate(){
+
+	public double getRate() {
 		return annualInterestRate;
 	}
-	
-	public void setRate(double value){
+
+	public void setRate(double value) {
 		annualInterestRate = value;
 	}
-	
-	public Calendar getCreationDate(){
+
+	public Date getCreationDate() {
 		return dateCreated;
 	}
-	
-	public double getMonthlyInterestRate(){
+
+	public double getMonthlyInterestRate() {
 		return (this.annualInterestRate / 12);
 	}
-	
-	public void withdraw(double value){
-		setBalance(balance - value);
+
+	public void withdraw(int value) throws InsufficientFundsException {
+		if (value <= balance) {
+			balance -= value;
+		} else {
+			double needs = value - balance;
+			throw new InsufficientFundsException(needs);
+		}
+
 	}
-	
-	public void deposit(double value){
+
+	public void deposit(int value) {
 		setBalance(balance + value);
 	}
-	
+
 }
