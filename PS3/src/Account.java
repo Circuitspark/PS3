@@ -1,13 +1,13 @@
-import java.util.Date;
+import java.util.Calendar;
 
 
 public class Account {
 	private int id = 0;
 	private double balance = 0;
 	private double annualInterestRate = 0;
-	private Date dateCreated; 
+	private Calendar dateCreated;
 	
-	public Account(int a, double b, double c, Date d){
+	public Account(int a, double b, double c, Calendar d){
 		id = a;
 		balance = b;
 		annualInterestRate = c;
@@ -38,7 +38,7 @@ public class Account {
 		annualInterestRate = value;
 	}
 	
-	public Date getCreationDate(){
+	public Calendar getCreationDate(){
 		return dateCreated;
 	}
 	
